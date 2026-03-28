@@ -364,7 +364,7 @@
         <div class="product-info">
             <h4>Oversized Tee</h4>
             <p style="color:var(--primary)">₹699</p>
-            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 699)">Add to Cart</button>
         </div>
     </div>
     <div class="product-card">
@@ -372,7 +372,7 @@
         <div class="product-info">
             <h4>Urban Sneakers</h4>
             <p style="color:var(--primary)">₹2,499</p>
-            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 2499)">Add to Cart</button>
         </div>
     </div>
 </div>
@@ -459,7 +459,7 @@
             <span>Total:</span>
             <span id="cart-total">₹0</span>
         </div>
-        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
+        <button onclick="checkout()" style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
     </div>
 </div>
 
@@ -583,6 +583,30 @@ function toggleAccount() {
         // Agar Cart khula hai toh use band kar do
         document.getElementById('cart-drawer').style.right = "-400px";
     }
+}
+
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Bhai, pehle cart mein kuch add toh karo! 🛒");
+        return;
+    }
+
+    let message = "Hello *TRY THIS*! I want to place an order:%0A%0A";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        message += `*${index + 1}.* ${item.name} - ₹${item.price}%0A`;
+        total += item.price;
+    });
+
+    message += `%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order!`;
+    
+    // Yahan apna WhatsApp number daalein (91 ke saath)
+    let myNumber = "917725028274"; 
+    
+    let whatsappURL = `https://wa.me/${myNumber}?text=${message}`;
+    window.open(whatsappURL, '_blank');
 }
 
     
