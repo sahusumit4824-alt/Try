@@ -1,0 +1,577 @@
+<html>
+<head>
+<title>Try This</title>
+<title>Try This | Luxury Streetwear</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/dc4867bd04.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+</head>
+<style>
+ :root {
+            --primary: #91AB5C;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- STICKY HEADER --- */
+        header {
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            font-size: 10px;
+            color: #888;
+            margin-top: -5px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 0.6;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 45px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: var(--gray);
+            color: white;
+            padding: 0 45px 0 15px;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-icons i:hover {
+            color: var(--primary);
+        }
+
+
+ /* --- CATEGORIES (TOP COLLECTION) --- */
+        .section-title {
+            text-align: center;
+            font-size: 35px;
+            margin: 60px 0 30px;
+            font-weight: 700;
+        }
+
+        .circle-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .circle-card {
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .img-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            padding: 5px;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .img-container:hover {
+            transform: rotate(10deg) scale(1.1);
+            background: var(--primary);
+        }
+
+        .circle-card p {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+/* --- 9 Image Grid System --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Desktop: 3 per row */
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Aapki image jaisa top rounded look */
+            border-bottom: 1px solid #333;
+        }
+
+        .product-info {
+            padding: 20px 10px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #91AB5C;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .add-btn {
+             background: var(--primary);
+            color: #fff; /* Dark text on light green button */
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+
+        .add-btn:hover {
+            opacity: 0.8;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 60px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-box h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-box ul { list-style: none; }
+        .footer-box ul li { margin: 10px 0; color: #888; cursor: pointer; }
+        .footer-box ul li:hover { color: var(--primary); }
+
+        .social-icons i {
+            font-size: 24px;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons i:hover { color: var(--primary); }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; }
+            .section-title { font-size: 28px; }
+        }
+
+</style>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <h1>Try This</h1>
+            <p>Premium Clothing</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-bar" placeholder="Aap kya dhoond rahe hain?">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="nav-icons">
+    <i class="fa-solid fa-cart-shopping" onclick="toggleCart()" style="cursor:pointer"></i>
+    <div style="position: relative; display: inline-block;">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-badge" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; display: none;">0</span>
+    </div>
+    <i class="fa-solid fa-user"></i>
+</div>
+
+
+    </div>
+</header>
+
+	<h2 class="section-title">Top Collection</h2>
+<div class="circle-cards">
+    <a href="trys.html" class="circle-card">
+        <div class="img-container" style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
+            <h3 style="color:white">ALL</h3>
+        </div>
+        <p>Everything</p>
+    </a>
+    <a href="shirt.html" class="circle-card">
+        <div class="img-container"><img src="shirt/s1.jpg"></div>
+        <p>Shirts</p>
+    </a>
+    <a href="tshirt.html" class="circle-card">
+        <div class="img-container"><img src="tshirt/tshirt2.jpg"></div>
+        <p>T-Shirts</p>
+    </a>
+    <a href="jeans.html" class="circle-card">
+        <div class="img-container"><img src="jeans/jeans4.jpg"></div>
+        <p>Jeans</p>
+    </a>
+    <a href="shoes.html" class="circle-card">
+        <div class="img-container"><img src="shoes/shoes7.jpg"></div>
+        <p>Shoes</p>
+    </a>
+</div>
+
+<h2 class="section-title">Best Selling</h2>
+
+    <div class="product-grid">
+        
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s1.jpg" alt="Oxford Cotton Shirt">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Oxford Cotton Shirt</p>
+                <span class="product-price">₹999</span>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s2.jpg">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Oversized Tee</p>
+                <span class="product-price">₹699</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s3.jpg" alt="Urban Sneakers">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Urban Sneakers</p>
+                <span class="product-price">₹2,499</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s4.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Slim Fit Jeans</p>
+                <span class="product-price">₹1,299</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s5.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Black Hoodie</p>
+                <span class="product-price">₹899</span>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s6.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Luxury Watch</p>
+                <span class="product-price">₹3,999</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s7.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Checks Shirt</p>
+                <span class="product-price">₹799</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s8.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">T-Shirt Combo</p>
+                <span class="product-price">₹1,499</span>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="image-box">
+                <img src="shirt/s9.jpg" alt="Product">
+            </div>
+            <div class="product-info">
+                <p class="product-name">Floral Shirt</p>
+                <span class="product-price">₹950</span>
+                 <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+            </div>
+        </div>
+               
+
+    </div>
+
+
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-box">
+            <h3>Try This</h3>
+            <p>India's fastest growing street fashion brand.</p>
+            <div class="social-icons" style="margin-top: 20px;">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Support</h3>
+            <ul>
+                <li>Track Order</li>
+                <li>Returns & Exchange</li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@trythis.com</p>
+            <p>Phone: +91 7725028274</p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 TRY THIS CLOTHING | Made with ❤️ for Fashion
+    </div>
+</footer>
+
+
+<div id="cart-drawer" style="position: fixed; top: 0; right: -400px; width: 350px; height: 100%; background: #1a1a1a; z-index: 2000; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.5); padding: 20px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px;">
+        <h2 style="color: var(--primary);">Your Cart</h2>
+        <i class="fa-solid fa-xmark" onclick="toggleCart()" style="cursor: pointer; font-size: 24px;"></i>
+    </div>
+
+    <div id="cart-items-container" style="flex: 1; overflow-y: auto; margin-top: 20px;">
+        </div>
+
+    <div style="border-top: 1px solid #333; padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+            <span>Total:</span>
+            <span id="cart-total">₹0</span>
+        </div>
+        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
+    </div>
+</div>
+
+<div id="cart-overlay" onclick="toggleCart()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none;"></div>
+
+    
+    <script>
+    // 1. Page load hote hi data memory (LocalStorage) se nikalo
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+
+    // 2. Load hote hi badge update karo
+    window.onload = function() {
+        updateBadge();
+        if(typeof renderCart === "function") renderCart(); 
+    };
+
+    function addToCart(name, price) {
+        const product = { id: Date.now(), name: name, price: price };
+        
+        // Purane cart mein naya item jodo
+        cart.push(product);
+        
+        // 3. IMPORTANT: Browser ki memory mein save karo
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        
+        updateBadge();
+        if(document.getElementById('cart-drawer').style.right === "0px") {
+            renderCart();
+        }
+        alert(name + " added to cart!");
+    }
+
+    function updateBadge() {
+        const badge = document.getElementById('cart-badge');
+        // Badge count update
+        if (cart.length > 0) {
+            badge.style.display = 'block';
+            badge.innerText = cart.length;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    function toggleCart() {
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        
+        if (drawer.style.right === "0px") {
+            drawer.style.right = "-400px";
+            overlay.style.display = "none";
+        } else {
+            drawer.style.right = "0px";
+            overlay.style.display = "block";
+            renderCart(); 
+        }
+    }
+
+    function renderCart() {
+        const container = document.getElementById('cart-items-container');
+        const totalElement = document.getElementById('cart-total');
+        container.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            container.innerHTML += `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333;">
+                    <div style="text-align:left;">
+                        <p style="font-size: 14px; font-weight: bold; color:white;">${item.name}</p>
+                        <p style="color: #91AB5C; font-size: 13px;">₹${item.price}</p>
+                    </div>
+                    <i class="fa-solid fa-trash" onclick="removeItem(${index})" style="color: #ff4444; cursor: pointer;"></i>
+                </div>
+            `;
+        });
+        totalElement.innerText = "₹" + total;
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        // Memory update karo delete ke baad
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        renderCart();
+        updateBadge();
+    }
+</script>
+
+
+</body>
+</html>

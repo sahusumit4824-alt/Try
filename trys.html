@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Try This | Luxury Streetwear</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/dc4867bd04.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        :root {
+            --primary: #91AB5C;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #1e1e1e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- STICKY HEADER --- */
+        header {
+            width: 100%;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            padding: 10px 0;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo p {
+            font-size: 10px;
+            color: #888;
+            margin-top: -5px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 0.6;
+        }
+
+        .search-bar {
+            width: 100%;
+            height: 45px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: var(--gray);
+            color: white;
+            padding: 0 45px 0 15px;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icons i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-icons i:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO SLIDER --- */
+        .swiper {
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .swiper-slide {
+            width: 320px;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- CATEGORIES (TOP COLLECTION) --- */
+        .section-title {
+            text-align: center;
+            font-size: 35px;
+            margin: 60px 0 30px;
+            font-weight: 700;
+        }
+
+        .circle-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .circle-card {
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .img-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            padding: 5px;
+            transition: 0.4s;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .img-container:hover {
+            transform: rotate(10deg) scale(1.1);
+            background: var(--primary);
+        }
+
+        .circle-card p {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* --- BEST SELLING GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid #222;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .product-img {
+            height: 320px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .buy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 60px 20px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-box h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-box ul { list-style: none; }
+        .footer-box ul li { margin: 10px 0; color: #888; cursor: pointer; }
+        .footer-box ul li:hover { color: var(--primary); }
+
+        .social-icons i {
+            font-size: 24px;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+
+        .social-icons i:hover { color: var(--primary); }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .search-box { width: 100%; }
+            .section-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <h1>Try This</h1>
+            <p>Premium Clothing</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" class="search-bar" placeholder="Aap kya dhoond rahe hain?">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+       <div class="nav-icons">
+    <i class="fa-solid fa-heart"></i>
+    <div style="position: relative; display: inline-block;">
+       <i class="fa-solid fa-cart-shopping" onclick="toggleCart()" style="cursor:pointer"></i>
+        <span id="cart-badge" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; display: none;">0</span>
+    </div>
+    <i class="fa-solid fa-user" onclick="toggleAccount()" style="cursor:pointer"></i>
+</div>
+    </div>
+</header>
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="shirt/s1.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s2.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s3.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s4.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s5.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s1.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s2.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s3.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s4.jpg"></div>
+        <div class="swiper-slide"><img src="shirt/s5.jpg"></div>
+    </div>
+</div>
+
+<h2 class="section-title">Top Collection</h2>
+<div class="circle-cards">
+    <a href="trys.html" class="circle-card">
+        <div class="img-container" style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
+            <h3 style="color:white">ALL</h3>
+        </div>
+        <p>Everything</p>
+    </a>
+    <a href="shirt.html" class="circle-card">
+        <div class="img-container"><img src="shirt/s1.jpg"></div>
+        <p>Shirts</p>
+    </a>
+    <a href="tshirt.html" class="circle-card">
+        <div class="img-container"><img src="tshirt/tshirt2.jpg"></div>
+        <p>T-Shirts</p>
+    </a>
+    <a href="jeans.html" class="circle-card">
+        <div class="img-container"><img src="jeans/jeans4.jpg"></div>
+        <p>Jeans</p>
+    </a>
+    <a href="shoes.html" class="circle-card">
+        <div class="img-container"><img src="shoes/shoes8.jpg"></div>
+        <p>Shoes</p>
+    </a>
+</div>
+
+<h2 class="section-title">Best Selling</h2>
+<div class="product-grid">
+    <div class="product-card">
+        <div class="product-img"><img src="shirt/s1.jpg"></div>
+        <div class="product-info">
+            <h4>Oxford Cotton Shirt</h4>
+            <p style="color:var(--primary)">₹999</p>
+            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="product-card">
+        <div class="product-img"><img src="tshirt/tshirt2.jpg"></div>
+        <div class="product-info">
+            <h4>Oversized Tee</h4>
+            <p style="color:var(--primary)">₹699</p>
+            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+        </div>
+    </div>
+    <div class="product-card">
+        <div class="product-img"><img src="shoes/shoes7.jpg"></div>
+        <div class="product-info">
+            <h4>Urban Sneakers</h4>
+            <p style="color:var(--primary)">₹2,499</p>
+            <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-box">
+            <h3>Try This</h3>
+            <p>India's fastest growing street fashion brand.</p>
+            <div class="social-icons" style="margin-top: 20px;">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Support</h3>
+            <ul>
+                <li>Track Order</li>
+                <li>Returns & Exchange</li>
+                <li>Privacy Policy</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@trythis.com</p>
+            <p>Phone: +91 7725028274</p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 TRY THIS CLOTHING | Made with ❤️ for Fashion
+    </div>
+</footer>
+
+
+
+<div id="account-drawer" style="position: fixed; top: 0; right: -400px; width: 320px; height: 100%; background: #121212; z-index: 2500; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.5); padding: 0; display: flex; flex-direction: column; border-left: 2px solid var(--primary);">
+    
+    <div style="background: #1e1e1e; padding: 30px 20px; text-align: center; border-bottom: 1px solid #333;">
+        <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 30px; color: white;">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <h3 style="margin: 0; font-size: 18px;">Sumit Kumar</h3>
+        <p style="margin: 5px 0 0; color: #888; font-size: 13px;">+91 7725028274</p>
+        <i class="fa-solid fa-xmark" onclick="toggleAccount()" style="position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 20px; color: #888;"></i>
+    </div>
+
+    <div style="flex: 1; overflow-y: auto; padding: 15px;">
+        <style>
+            .acc-link { display: flex; align-items: center; padding: 15px; color: white; text-decoration: none; border-radius: 10px; margin-bottom: 5px; transition: 0.3s; }
+            .acc-link:hover { background: #1e1e1e; color: var(--primary); }
+            .acc-link i { width: 30px; font-size: 18px; color: var(--primary); }
+            .acc-link span { flex: 1; font-size: 14px; }
+        </style>
+
+        <a href="#" class="acc-link"><i class="fa-solid fa-circle-user"></i><span>Profile</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-box-open"></i><span>My Orders</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-building-columns"></i><span>Bank UPI</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-wallet"></i><span>Try Wallet</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-location-dot"></i><span>Address</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-gift"></i><span>Gift Card</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        <a href="#" class="acc-link"><i class="fa-solid fa-headset"></i><span>Contact Support</span><i class="fa-solid fa-chevron-right" style="font-size: 10px; width: auto;"></i></a>
+        
+        <hr style="border: 0; border-top: 1px solid #333; margin: 15px 0;">
+        <a href="#" class="acc-link" style="color: #ff4444;"><i class="fa-solid fa-right-from-bracket" style="color: #ff4444;"></i><span>Logout</span></a>
+    </div>
+</div>
+
+
+
+
+
+<div id="cart-drawer" style="position: fixed; top: 0; right: -400px; width: 350px; height: 100%; background: #1a1a1a; z-index: 2000; transition: 0.4s; box-shadow: -5px 0 15px rgba(0,0,0,0.5); padding: 20px; display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px;">
+        <h2 style="color: var(--primary);">Your Cart</h2>
+        <i class="fa-solid fa-xmark" onclick="toggleCart()" style="cursor: pointer; font-size: 24px;"></i>
+    </div>
+
+    <div id="cart-items-container" style="flex: 1; overflow-y: auto; margin-top: 20px;">
+        </div>
+
+    <div style="border-top: 1px solid #333; padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-bottom: 20px;">
+            <span>Total:</span>
+            <span id="cart-total">₹0</span>
+        </div>
+        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
+    </div>
+</div>
+
+<div id="cart-overlay" onclick="toggleCart()" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1500; display: none;"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+        },
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+</script>
+
+<script>
+    // 1. Page load hote hi data memory (LocalStorage) se nikalo
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+
+    // 2. Load hote hi badge update karo
+    window.onload = function() {
+        updateBadge();
+        if(typeof renderCart === "function") renderCart(); 
+    };
+
+    function addToCart(name, price) {
+        const product = { id: Date.now(), name: name, price: price };
+        
+        // Purane cart mein naya item jodo
+        cart.push(product);
+        
+        // 3. IMPORTANT: Browser ki memory mein save karo
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        
+        updateBadge();
+        if(document.getElementById('cart-drawer').style.right === "0px") {
+            renderCart();
+        }
+        alert(name + " added to cart!");
+    }
+
+    function updateBadge() {
+        const badge = document.getElementById('cart-badge');
+        // Badge count update
+        if (cart.length > 0) {
+            badge.style.display = 'block';
+            badge.innerText = cart.length;
+        } else {
+            badge.style.display = 'none';
+        }
+    }
+
+    function toggleCart() {
+        const drawer = document.getElementById('cart-drawer');
+        const overlay = document.getElementById('cart-overlay');
+        
+        if (drawer.style.right === "0px") {
+            drawer.style.right = "-400px";
+            overlay.style.display = "none";
+        } else {
+            drawer.style.right = "0px";
+            overlay.style.display = "block";
+            renderCart(); 
+        }
+    }
+
+    function renderCart() {
+        const container = document.getElementById('cart-items-container');
+        const totalElement = document.getElementById('cart-total');
+        container.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price;
+            container.innerHTML += `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333;">
+                    <div style="text-align:left;">
+                        <p style="font-size: 14px; font-weight: bold; color:white;">${item.name}</p>
+                        <p style="color: #91AB5C; font-size: 13px;">₹${item.price}</p>
+                    </div>
+                    <i class="fa-solid fa-trash" onclick="removeItem(${index})" style="color: #ff4444; cursor: pointer;"></i>
+                </div>
+            `;
+        });
+        totalElement.innerText = "₹" + total;
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        // Memory update karo delete ke baad
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        renderCart();
+        updateBadge();
+    }
+
+
+function toggleAccount() {
+    const accountDrawer = document.getElementById('account-drawer');
+    const overlay = document.getElementById('cart-overlay'); // Hum purana overlay hi use kar lenge
+
+    if (accountDrawer.style.right === "0px") {
+        accountDrawer.style.right = "-400px";
+        overlay.style.display = "none";
+    } else {
+        accountDrawer.style.right = "0px";
+        overlay.style.display = "block";
+        
+        // Agar Cart khula hai toh use band kar do
+        document.getElementById('cart-drawer').style.right = "-400px";
+    }
+}
+
+    
+</script>
+
+</body>
+</html>
