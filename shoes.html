@@ -305,7 +305,7 @@
 
 	<h2 class="section-title">Top Collection</h2>
 <div class="circle-cards">
-    <a href="trys.html" class="circle-card">
+    <a href="index.html" class="circle-card">
         <div class="img-container" style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
             <h3 style="color:white">ALL</h3>
         </div>
@@ -340,7 +340,7 @@
             <div class="product-info">
                 <p class="product-name">Running Drivo Shoes</p>
                 <span class="product-price">₹1359</span>
-                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 1359)">Add to Cart</button>
             </div>
         </div>
 
@@ -351,7 +351,7 @@
             <div class="product-info">
                 <p class="product-name">Sneakers For Men White</p>
                 <span class="product-price">₹1329</span>
-              <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+              <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 1399)">Add to Cart</button>
             </div>
         </div>
 
@@ -363,7 +363,7 @@
                 <p class="product-name">Rungryp Sneakers For Men
             </p>
                 <span class="product-price">₹2,499</span>
-                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 2499)">Add to Cart</button>
             </div>
         </div>
 
@@ -374,7 +374,7 @@
             <div class="product-info">
                 <p class="product-name">Men Casuals Shoes For Men</p>
                 <span class="product-price">₹2953</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 2953)">Add to Cart</button>
             </div>
         </div>
 
@@ -385,7 +385,7 @@
             <div class="product-info">
                 <p class="product-name">Air Max TW For Men</p>
                 <span class="product-price">₹3822</span>
-                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 3822)">Add to Cart</button>
             </div>
         </div>
 
@@ -396,7 +396,7 @@
             <div class="product-info">
                 <p class="product-name">Men Casuals Shoes </p>
                 <span class="product-price">₹3,999</span>
-                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 3999)">Add to Cart</button>
             </div>
         </div>
 
@@ -407,7 +407,7 @@
             <div class="product-info">
                 <p class="product-name">men Jodarn shoes</p>
                 <span class="product-price">₹6599</span>
-              <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+              <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 6599)">Add to Cart</button>
             </div>
         </div>
 
@@ -418,7 +418,7 @@
             <div class="product-info">
                 <p class="product-name">Air Zoom Pegasus Running Shoes</p>
                 <span class="product-price">₹5399</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 5399)">Add to Cart</button>
             </div>
         </div>
 
@@ -429,7 +429,7 @@
             <div class="product-info">
                 <p class="product-name">Running Drivo Shoes</p>
                 <span class="product-price">₹1150</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 1150)">Add to Cart</button>
             </div>
         </div>
 
@@ -482,7 +482,7 @@
             <span>Total:</span>
             <span id="cart-total">₹0</span>
         </div>
-        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
+        <button onclick="checkout()" style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
     </div>
 </div>
 
@@ -568,6 +568,33 @@
         renderCart();
         updateBadge();
     }
+
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Bhai, pehle cart mein kuch add toh karo! 🛒");
+        return;
+    }
+
+    let message = "Hello *TRY THIS*! I want to place an order:%0A%0A";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        message += `*${index + 1}.* ${item.name} - ₹${item.price}%0A`;
+        total += item.price;
+    });
+
+    message += `%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order!`;
+    
+    // Yahan apna WhatsApp number daalein (91 ke saath)
+    let myNumber = "917725028274"; 
+    
+    let whatsappURL = `https://wa.me/${myNumber}?text=${message}`;
+    window.open(whatsappURL, '_blank');
+}
+
+
+
 </script>
 
 </body>
