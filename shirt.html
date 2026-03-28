@@ -292,10 +292,10 @@
             <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
 
-        <div class="nav-icons">
-    <i class="fa-solid fa-cart-shopping" onclick="toggleCart()" style="cursor:pointer"></i>
+       <div class="nav-icons">
+    <i class="fa-solid fa-heart"></i>
     <div style="position: relative; display: inline-block;">
-        <i class="fa-solid fa-cart-shopping"></i>
+        <i class="fa-solid fa-cart-shopping" onclick="toggleCart()" style="cursor:pointer"></i>
         <span id="cart-badge" style="position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; display: none;">0</span>
     </div>
     <i class="fa-solid fa-user"></i>
@@ -307,7 +307,7 @@
 
 	<h2 class="section-title">Top Collection</h2>
 <div class="circle-cards">
-    <a href="trys.html" class="circle-card">
+    <a href="index.html" class="circle-card">
         <div class="img-container" style="background: var(--primary); display: flex; align-items: center; justify-content: center;">
             <h3 style="color:white">ALL</h3>
         </div>
@@ -353,7 +353,7 @@
             <div class="product-info">
                 <p class="product-name">Oversized Tee</p>
                 <span class="product-price">₹699</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 699)">Add to Cart</button>
             </div>
         </div>
 
@@ -364,7 +364,7 @@
             <div class="product-info">
                 <p class="product-name">Urban Sneakers</p>
                 <span class="product-price">₹2,499</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 2499)">Add to Cart</button>
             </div>
         </div>
 
@@ -375,7 +375,7 @@
             <div class="product-info">
                 <p class="product-name">Slim Fit Jeans</p>
                 <span class="product-price">₹1,299</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 1299)">Add to Cart</button>
             </div>
         </div>
 
@@ -386,7 +386,7 @@
             <div class="product-info">
                 <p class="product-name">Black Hoodie</p>
                 <span class="product-price">₹899</span>
-                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 899)">Add to Cart</button>
             </div>
         </div>
 
@@ -397,7 +397,7 @@
             <div class="product-info">
                 <p class="product-name">Luxury Watch</p>
                 <span class="product-price">₹3,999</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 3999)">Add to Cart</button>
             </div>
         </div>
 
@@ -408,7 +408,7 @@
             <div class="product-info">
                 <p class="product-name">Checks Shirt</p>
                 <span class="product-price">₹799</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 799)">Add to Cart</button>
             </div>
         </div>
 
@@ -419,7 +419,7 @@
             <div class="product-info">
                 <p class="product-name">T-Shirt Combo</p>
                 <span class="product-price">₹1,499</span>
-               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+               <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 1499)">Add to Cart</button>
             </div>
         </div>
 
@@ -430,7 +430,7 @@
             <div class="product-info">
                 <p class="product-name">Floral Shirt</p>
                 <span class="product-price">₹950</span>
-                 <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 999)">Add to Cart</button>
+                 <button class="add-btn" onclick="addToCart('Men Fit Printed TShirt', 950)">Add to Cart</button>
             </div>
         </div>
                
@@ -484,7 +484,7 @@
             <span>Total:</span>
             <span id="cart-total">₹0</span>
         </div>
-        <button style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
+        <button onclick="checkout()" style="width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">CHECKOUT NOW</button>
     </div>
 </div>
 
@@ -570,8 +570,35 @@
         renderCart();
         updateBadge();
     }
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Bhai, pehle cart mein kuch add toh karo! 🛒");
+        return;
+    }
+
+    let message = "Hello *TRY THIS*! I want to place an order:%0A%0A";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        message += `*${index + 1}.* ${item.name} - ₹${item.price}%0A`;
+        total += item.price;
+    });
+
+    message += `%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order!`;
+    
+    // Yahan apna WhatsApp number daalein (91 ke saath)
+    let myNumber = "917725028274"; 
+    
+    let whatsappURL = `https://wa.me/${myNumber}?text=${message}`;
+    window.open(whatsappURL, '_blank');
+}
+
+
+
 </script>
 
 
 </body>
 </html>
+
